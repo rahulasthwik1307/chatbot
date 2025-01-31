@@ -1,17 +1,31 @@
 /* Base Styles */
 :root {
+  /* Dark Theme */
   --bg-dark: #1a1a1a;
-  --bg-light: #ffffff;
   --text-dark: #ffffff;
+  --user-bg-dark: #2a2a72;
+  --bot-bg-dark: #333333;
+  --input-bg-dark: #2d2d2d;
+  --title-dark: #FF6B6B; /* Coral Red */
+  --button-bg-dark: #20B2AA; /* Teal */
+
+  /* Light Theme */
+  --bg-light: #f5f5f5;
   --text-light: #333333;
-  --user-bg: #2d2d2d;
-  --bot-bg: #333333;
+  --user-bg-light: #4a90e2;
+  --bot-bg-light: #e0e0e0;
+  --input-bg-light: #ffffff;
+  --title-light: #6C5CE7; /* Royal Purple */
+  --button-bg-light: #6C5CE7; /* Purple */
 }
 
 .app {
   min-height: 100vh;
   padding: 2rem;
-  transition: background 0.3s, color 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .app.dark {
@@ -24,75 +38,161 @@
   color: var(--text-light);
 }
 
+/* Header */
+.header {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.heading {
+  color: var(--title-light);
+  font-size: 2.5rem;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  transition: color 0.3s ease;
+}
+
+.app.dark .heading {
+  color: var(--title-dark);
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: inherit;
+  transition: transform 0.2s;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
 /* Chat Container */
 .chatbot_container {
   width: 90%;
   max-width: 800px;
-  height: 600px;
+  height: 70vh;
   margin: 0 auto;
   border-radius: 20px;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-/* Messages */
-.message {
-  margin: 12px 0;
-  animation: fadeIn 0.3s ease-in;
+.app.light .chatbot_container {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
-.user-message {
-  text-align: right;
-  margin-bottom: 8px;
+/* Chat Messages */
+.chatbot_response_container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
+/* Message Bubbles */
 .user-message p {
-  background: var(--user-bg);
-  display: inline-block;
-  padding: 12px;
-  border-radius: 15px 15px 0 15px;
+  background: var(--user-bg-dark);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 20px 20px 0 20px;
+  max-width: 70%;
+  margin-left: auto;
+}
+
+.app.light .user-message p {
+  background: var(--user-bg-light);
+  color: white;
 }
 
 .bot-message p {
-  background: var(--bot-bg);
-  display: inline-block;
-  padding: 12px;
-  border-radius: 15px 15px 15px 0;
+  background: var(--bot-bg-dark);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 20px 20px 20px 0;
+  max-width: 70%;
+  margin-right: auto;
 }
 
-/* Input */
+.app.light .bot-message p {
+  background: var(--bot-bg-light);
+  color: var(--text-light);
+}
+
+/* Input Field */
 .chatbot_input {
   display: flex;
   gap: 10px;
-  padding: 20px 0;
+  padding: 15px 0;
 }
 
 .chatbot_input input {
   flex: 1;
-  padding: 15px;
+  padding: 15px 25px;
   border: none;
-  border-radius: 25px;
-  background: rgba(255, 255, 255, 0.1);
-  color: inherit;
+  border-radius: 30px;
+  font-size: 1rem;
+  background: var(--input-bg-dark);
+  color: var(--text-dark);
+  transition: all 0.3s ease;
 }
 
+.app.light .chatbot_input input {
+  background: var(--input-bg-light);
+  color: var(--text-light);
+  border: 1px solid #ddd;
+}
+
+/* Submit Button Styles */
 .chatbot_input button {
   padding: 15px 30px;
   border: none;
-  border-radius: 25px;
-  background: chocolate;
+  border-radius: 30px;
   color: white;
+  font-weight: bold;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: all 0.3s ease;
+  
+  /* Dark theme default */
+  background: var(--button-bg-dark);
 }
 
+.app.light .chatbot_input button {
+  /* Light theme default (purple) */
+  background: var(--button-bg-light);
+}
+
+/* Hover States */
 .chatbot_input button:hover {
-  transform: scale(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+.app.dark .chatbot_input button:hover {
+  background: #1E9C8F; /* Darker teal */
+}
+
+.app.light .chatbot_input button:hover {
+  background: #8577E6; /* Lighter purple */
+}
+
+/* Active/Pressed State (Green) */
+.chatbot_input button:active {
+  background: #2ECC71 !important; /* Emerald green */
+  transform: scale(0.98);
 }

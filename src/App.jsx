@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { SyncLoader } from "react-spinners";
 import ChatMessage from "./components/ChatMessage";
 import useLocalStorage from "./hooks/useLocalStorage";
 import { generateResponse } from "./utils/api";
@@ -42,13 +41,13 @@ function App() {
 
   return (
     <div className={`app ${isDarkMode ? 'dark' : 'light'}`}>
-      <header>
+      <header className="header">
         <h1 className="heading">AI Chat Bot</h1>
         <button 
           onClick={() => setIsDarkMode(!isDarkMode)}
           className="theme-toggle"
         >
-          {isDarkMode ? "☀️" : "🌙"}
+          {isDarkMode ? "🌙" : "☀️"}
         </button>
       </header>
 
