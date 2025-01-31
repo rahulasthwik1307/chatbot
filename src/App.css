@@ -1,0 +1,98 @@
+/* Base Styles */
+:root {
+  --bg-dark: #1a1a1a;
+  --bg-light: #ffffff;
+  --text-dark: #ffffff;
+  --text-light: #333333;
+  --user-bg: #2d2d2d;
+  --bot-bg: #333333;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 2rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+.app.dark {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+.app.light {
+  background: var(--bg-light);
+  color: var(--text-light);
+}
+
+/* Chat Container */
+.chatbot_container {
+  width: 90%;
+  max-width: 800px;
+  height: 600px;
+  margin: 0 auto;
+  border-radius: 20px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* Messages */
+.message {
+  margin: 12px 0;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.user-message {
+  text-align: right;
+  margin-bottom: 8px;
+}
+
+.user-message p {
+  background: var(--user-bg);
+  display: inline-block;
+  padding: 12px;
+  border-radius: 15px 15px 0 15px;
+}
+
+.bot-message p {
+  background: var(--bot-bg);
+  display: inline-block;
+  padding: 12px;
+  border-radius: 15px 15px 15px 0;
+}
+
+/* Input */
+.chatbot_input {
+  display: flex;
+  gap: 10px;
+  padding: 20px 0;
+}
+
+.chatbot_input input {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  color: inherit;
+}
+
+.chatbot_input button {
+  padding: 15px 30px;
+  border: none;
+  border-radius: 25px;
+  background: chocolate;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.chatbot_input button:hover {
+  transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
